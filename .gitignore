@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environment
+venv/
+
+# Environment Variables
+.env
+
+# Documents / PDFs
+*.pdf
+
+# Medical documents
+rag/documents/
+insurance_rag/documents/
+
+# Uploads
+uploads/
+
+# Vector databases
+vectorstore/
+chroma.sqlite3
+
+# ML generated files
+models/
+*.pkl
+*.joblib
+
+# Streamlit cache
+.streamlit/
+
+# Logs
+*.log

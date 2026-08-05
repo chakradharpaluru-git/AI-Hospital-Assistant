@@ -1,0 +1,7 @@
+streamlit
+requests
+pillow
+plotly
+pandas
+streamlit-option-menu
+streamlit-lottie
