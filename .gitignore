@@ -32,3 +32,27 @@ models/
 
 # Logs
 *.log
+# Database
+*.db
+
+# PDF Documents
+*.pdf
+
+# Medical documents
+rag/documents/
+insurance_rag/documents/
+
+# Upload files
+uploads/
+
+# Vector database
+vectorstore/
+chroma.sqlite3
+
+# Environment
+.env
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
