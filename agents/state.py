@@ -1,4 +1,4 @@
-from typing import TypedDict
+from typing import TypedDict, Optional, Any
 
 
 class AgentState(TypedDict):
@@ -7,4 +7,4 @@ class AgentState(TypedDict):
 
     next_agent: str
 
-    answer: str
+    answer: Optional[Any]

@@ -1,45 +1,41 @@
 import os
 
+os.environ["ANONYMIZED_TELEMETRY"] = "False"
+
+
 from langchain_community.document_loaders import PyPDFLoader
-
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-
-from langchain_community.vectorstores import Chroma
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_chroma import Chroma
 
 from rag.embeddings import get_embeddings
 
 
-DOCUMENT_PATH = "rag/documents"
+PDF_PATH = "rag/documents/who_guidelines.pdf"
 
 VECTOR_PATH = "rag/vectorstore"
 
 
 
-def create_vector_database():
+def ingest():
 
-    documents=[]
+    print("Loading medical documents...")
 
 
-    for file in os.listdir(DOCUMENT_PATH):
+    loader = PyPDFLoader(
+        PDF_PATH
+    )
 
-        if file.endswith(".pdf"):
+    documents = loader.load()
 
-            loader = PyPDFLoader(
-                f"{DOCUMENT_PATH}/{file}"
-            )
 
-            docs = loader.load()
-
-            documents.extend(docs)
-
+    print(
+        f"Loaded {len(documents)} pages"
+    )
 
 
     splitter = RecursiveCharacterTextSplitter(
-
         chunk_size=1000,
-
         chunk_overlap=200
-
     )
 
 
@@ -48,27 +44,32 @@ def create_vector_database():
     )
 
 
-    embeddings = get_embeddings()
-
-
-    db = Chroma.from_documents(
-
-        chunks,
-
-        embeddings,
-
-        persist_directory=VECTOR_PATH
-
+    print(
+        f"Created {len(chunks)} chunks"
     )
 
 
-    db.persist()
+    embeddings = get_embeddings()
 
 
-    print("Medical Vector Database Created")
+    print(
+        "Creating Chroma database..."
+    )
+
+
+    Chroma.from_documents(
+        documents=chunks,
+        embedding=embeddings,
+        persist_directory=VECTOR_PATH,
+        collection_name="medical_rag"
+    )
+
+
+    print(
+        "Medical Vector Database Created Successfully"
+    )
 
 
 
-if __name__=="__main__":
-
-    create_vector_database()
+if __name__ == "__main__":
+    ingest()

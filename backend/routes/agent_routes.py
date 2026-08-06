@@ -9,16 +9,33 @@ router = APIRouter(
 )
 
 
+
 @router.post("/query")
-def agent_query(data:dict):
+def agent_query(data: dict):
+
+
+    question = data.get(
+        "question"
+    )
+
+
+    if not question:
+
+        return {
+            "error":
+            "question field required"
+        }
+
 
 
     result = agent_graph.invoke(
 
         {
+            "user_question": question,
 
-            "user_question":
-            data["question"]
+            "next_agent": "",
+
+            "answer": None
 
         }
 
@@ -27,7 +44,8 @@ def agent_query(data:dict):
 
     return {
 
-        "answer":
-        result["answer"]
+        "question": question,
+
+        "answer": result["answer"]
 
     }

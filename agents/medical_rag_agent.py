@@ -3,14 +3,16 @@ from backend.ai.medical_rag import ask_medical_question
 
 def medical_rag_agent(state):
 
-    response = ask_medical_question(
-        state["user_question"]
+    question = state["user_question"]
+
+
+    result = ask_medical_question(
+        question
     )
+
 
     return {
 
-        "answer": response["answer"],
-
-        "sources": response["sources"]
+        "answer": result
 
     }

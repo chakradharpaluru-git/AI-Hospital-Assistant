@@ -27,6 +27,7 @@ from backend.routes.insurance_routes import router as insurance_router
 from backend.routes.emergency_routes import router as emergency_router
 from backend.routes.profile_routes import router as profile_router
 from backend.routes.admin_routes import router as admin_router
+from backend.routes.medical_rag_routes import router as medical_router
 
 # =====================================================
 # CREATE DATABASE TABLES
@@ -109,6 +110,10 @@ app.include_router(profile_router)
 app.include_router(
     admin_router
 )
+app.include_router(
+    medical_router
+)
+
 
 # =====================================================
 # BASIC ROUTES

@@ -1,4 +1,4 @@
-from ml.predict_disease import predict
+from backend.ai.medical_rag import ask_medical_question
 
 
 def diagnosis_agent(state):
@@ -6,11 +6,15 @@ def diagnosis_agent(state):
     question = state["user_question"]
 
 
-    # Later connect symptom extraction
+    response = ask_medical_question(
+        question
+    )
+
 
     return {
 
-        "answer":
-        "Diagnosis Agent: Disease prediction will be performed using ML model."
+        "answer": response["answer"],
+
+        "sources": response["sources"]
 
     }

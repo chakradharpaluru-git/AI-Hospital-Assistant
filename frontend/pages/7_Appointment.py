@@ -29,11 +29,13 @@ USER_ID = st.session_state.get(
 )
 
 
+
 # ---------------------------------------------------
 # CSS
 # ---------------------------------------------------
 
-st.markdown("""
+st.markdown(
+"""
 <style>
 
 .main{
@@ -51,21 +53,34 @@ st.markdown("""
 }
 
 .subtitle{
-    color:gray;
+    color:#555;
     font-size:18px;
 }
 
 .card{
+
     background:white;
+
+    color:#222;
+
     padding:20px;
+
     border-radius:15px;
-    box-shadow:0px 2px 10px rgba(0,0,0,0.08);
+
+    border:1px solid #ddd;
+
+    box-shadow:
+    0px 2px 10px rgba(0,0,0,0.08);
+
     margin-top:15px;
+
 }
+
 
 </style>
 """,
-unsafe_allow_html=True)
+unsafe_allow_html=True
+)
 
 
 
@@ -87,6 +102,7 @@ appointment_image = os.path.join(
 )
 
 
+
 doctor_image = os.path.join(
     BASE_DIR,
     "assets",
@@ -96,17 +112,21 @@ doctor_image = os.path.join(
 
 
 # ---------------------------------------------------
-# HEADER
+# HEADER IMAGE
 # ---------------------------------------------------
 
 if os.path.exists(appointment_image):
 
     st.image(
         Image.open(appointment_image),
-        width="stretch"
+        use_container_width=True
     )
 
 
+
+# ---------------------------------------------------
+# HEADER
+# ---------------------------------------------------
 
 st.markdown(
     "<div class='title'>📅 Book Doctor Appointment</div>",
@@ -114,10 +134,12 @@ st.markdown(
 )
 
 
+
 st.markdown(
     "<div class='subtitle'>Book your appointment with experienced doctors.</div>",
     unsafe_allow_html=True
 )
+
 
 
 st.divider()
@@ -226,9 +248,7 @@ with left:
 
         submit = st.form_submit_button(
 
-            "📅 Book Appointment",
-
-            width="stretch"
+            "📅 Book Appointment"
 
         )
 
@@ -248,27 +268,37 @@ with right:
 
             Image.open(doctor_image),
 
-            width="stretch"
+            use_container_width=True
 
         )
 
 
-    st.markdown("""
+
+    st.markdown(
+"""
 <div class="card">
 
-### 👨‍⚕️ Consultation
+<h3>👨‍⚕️ Consultation</h3>
 
 ✔ General Checkup
 
+<br>
+
 ✔ Specialist Consultation
+
+<br>
 
 ✔ Follow-up Visit
 
+<br>
+
 ✔ Health Checkup
+
 
 </div>
 """,
-unsafe_allow_html=True)
+unsafe_allow_html=True
+)
 
 
 
@@ -281,9 +311,13 @@ if submit:
 
 
     appointment_datetime = (
+
         str(appointment_date)
+
         +
+
         "T10:00:00"
+
     )
 
 
@@ -332,7 +366,6 @@ if submit:
             )
 
 
-
             st.info(
 f"""
 Patient:
@@ -360,7 +393,6 @@ Status:
 Booked
 """
             )
-
 
 
         else:
@@ -420,7 +452,7 @@ if st.button(
         if response.status_code == 200:
 
 
-            appointments = response.json()
+            appointments=response.json()
 
 
 
@@ -439,10 +471,14 @@ f"""
 {appointment.get('doctor_name')}
 
 
+<br><br>
+
 📅 Date:
 
 {appointment.get('appointment_date')}
 
+
+<br><br>
 
 📌 Status:
 
@@ -464,9 +500,7 @@ unsafe_allow_html=True
                 )
 
 
-
         else:
-
 
             st.error(
                 response.text
@@ -517,7 +551,7 @@ if st.button(
     try:
 
 
-        response = requests.delete(
+        response=requests.delete(
 
             API_URL +
 
@@ -528,7 +562,7 @@ if st.button(
         )
 
 
-        if response.status_code == 200:
+        if response.status_code==200:
 
 
             st.success(
@@ -553,6 +587,7 @@ if st.button(
 
 
 
+
 # ---------------------------------------------------
 # INFORMATION
 # ---------------------------------------------------
@@ -566,29 +601,38 @@ st.subheader(
 
 
 
-col1,col2 = st.columns(2)
+col1,col2=st.columns(2)
+
 
 
 with col1:
 
-    st.success("""
+    st.success(
+"""
 Monday - Friday
 
 09:00 AM - 06:00 PM
-""")
+"""
+    )
+
 
 
 with col2:
 
-    st.success("""
+    st.success(
+"""
 Saturday
 
 09:00 AM - 01:00 PM
-""")
+"""
+    )
 
 
-st.info("""
+
+st.info(
+"""
 Please arrive 15 minutes before your appointment.
 
 Carry previous prescriptions and medical reports.
-""")
+"""
+)
