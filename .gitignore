@@ -23,9 +23,9 @@ vectorstore/
 chroma.sqlite3
 
 # ML generated files
-models/
-*.pkl
-*.joblib
+#models/
+#*.pkl
+#*.joblib
 
 # Streamlit cache
 .streamlit/
