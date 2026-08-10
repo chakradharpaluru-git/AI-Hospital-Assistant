@@ -1,10 +1,17 @@
+from functools import lru_cache
+
 from langchain_huggingface import HuggingFaceEmbeddings
 
 
-embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
-)
-
-
+@lru_cache(maxsize=1)
 def get_embeddings():
+
+    print("Loading insurance HuggingFace embedding model...")
+
+    embeddings = HuggingFaceEmbeddings(
+        model_name="sentence-transformers/all-MiniLM-L6-v2"
+    )
+
+    print("Insurance HuggingFace embedding model loaded.")
+
     return embeddings
