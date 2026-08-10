@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 from PIL import Image
 import os
-
+from utils.config import BACKEND_URL
 
 # ---------------------------------------------------
 # PAGE CONFIG
@@ -182,7 +182,7 @@ if analyze:
 
                 response = requests.post(
 
-                    "http://127.0.0.1:8000/medical-report/summarize",
+                    f"{BACKEND_URL}/medical-report/summarize",
 
                     files=files,
 

@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 from PIL import Image
 import os
+from utils.config import BACKEND_URL
 
 # -----------------------------------------------------
 # PAGE CONFIG
@@ -226,7 +227,7 @@ if submit:
 
             response = requests.post(
 
-                "http://127.0.0.1:8000/emergency/assess",
+                f"{BACKEND_URL}/emergency/assess",
 
                 json=payload,
 

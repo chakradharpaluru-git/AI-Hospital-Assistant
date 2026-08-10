@@ -3,7 +3,7 @@ import requests
 from PIL import Image
 import os
 from datetime import date
-
+from utils.config import BACKEND_URL
 
 # -------------------------------------------------------
 # PAGE CONFIG
@@ -214,7 +214,7 @@ if submit:
 
         response = requests.post(
 
-            "http://127.0.0.1:8000/prescription/generate",
+            f"{BACKEND_URL}/prescription/generate",
 
             json=payload,
 

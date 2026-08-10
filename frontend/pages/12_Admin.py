@@ -3,6 +3,7 @@ import requests
 import pandas as pd
 import plotly.express as px
 
+from utils.config import BACKEND_URL
 
 # =====================================================
 # PAGE CONFIG
@@ -18,9 +19,6 @@ st.set_page_config(
 # =====================================================
 # CONFIG
 # =====================================================
-
-BACKEND_URL = "http://127.0.0.1:8000"
-
 
 # =====================================================
 # CSS

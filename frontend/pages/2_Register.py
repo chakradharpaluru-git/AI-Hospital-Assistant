@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import base64
 from pathlib import Path
+from utils.config import BACKEND_URL
 
 # ==========================================================
 # PAGE CONFIG
@@ -17,7 +18,9 @@ st.set_page_config(
 # BACKEND API
 # ==========================================================
 
-API_URL = "http://127.0.0.1:8000"
+
+
+API_URL = BACKEND_URL
 
 # ==========================================================
 # BACKGROUND IMAGE

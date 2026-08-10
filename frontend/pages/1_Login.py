@@ -3,7 +3,7 @@ import requests
 import base64
 import time
 import os
-
+from utils.config import BACKEND_URL
 
 # =====================================================
 # PAGE CONFIGURATION
@@ -20,9 +20,11 @@ st.set_page_config(
 # BACKEND API URL
 # =====================================================
 
-LOGIN_API_URL = "http://127.0.0.1:8000/auth/login"
 
 
+
+
+LOGIN_API_URL = f"{BACKEND_URL}/auth/login"
 
 # =====================================================
 # IMAGE PATHS

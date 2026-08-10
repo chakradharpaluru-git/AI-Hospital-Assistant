@@ -3,7 +3,7 @@ import requests
 from PIL import Image
 import os
 from datetime import date, timedelta
-
+from utils.config import BACKEND_URL
 
 # ---------------------------------------------------
 # PAGE CONFIG
@@ -20,7 +20,7 @@ st.set_page_config(
 # CONFIG
 # ---------------------------------------------------
 
-API_URL = "http://127.0.0.1:8000"
+API_URL = BACKEND_URL
 
 
 USER_ID = st.session_state.get(
