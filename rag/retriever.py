@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from langchain_chroma import Chroma
 
 from rag.embeddings import get_embeddings
@@ -6,10 +8,12 @@ from rag.embeddings import get_embeddings
 VECTOR_PATH = "rag/vectorstore"
 
 
+@lru_cache(maxsize=1)
 def get_retriever():
 
-    embeddings = get_embeddings()
+    print("Loading Chroma medical retriever...")
 
+    embeddings = get_embeddings()
 
     db = Chroma(
         persist_directory=VECTOR_PATH,
@@ -17,11 +21,14 @@ def get_retriever():
         collection_name="medical_rag"
     )
 
-
-    return db.as_retriever(
+    retriever = db.as_retriever(
         search_type="similarity_score_threshold",
         search_kwargs={
             "k": 5,
             "score_threshold": 0.2
         }
     )
+
+    print("Chroma medical retriever loaded.")
+
+    return retriever
